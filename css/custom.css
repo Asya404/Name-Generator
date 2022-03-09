@@ -5,9 +5,9 @@
  }
 
  body {
-     background-color: #000428;
-     background: -webkit-linear-gradient(to right, #1f005c, #ffb56b);
-     background: linear-gradient(to right, #1f005c, #ffb56b);
+     background-color: #710B1D;
+     background: -webkit-linear-gradient(to right, #710B1D, #DAA520);
+     background: linear-gradient(to right, #710B1D, #DAA520);
      font-family: "Raleway", sans-serif;
      font-size: 18px;
      font-weight: 400;
@@ -29,11 +29,12 @@
      background-color: #fff;
      padding: 50px;
      border-radius: 20px;
+     margin: 0 15px;
  }
 
  h1 {
-     font-weight: 100;
-     color: #fff;
+     font-weight: 400;
+     color: #DAA520;
      text-align: center;
  }
 
@@ -47,14 +48,13 @@
 
  .wrapper {
      display: flex;
-     justify-content: center;
+     justify-content: space-between;
      flex-wrap: wrap;
-     gap: 50px;
  }
 
  .content {
      width: 100%;
-     max-width: 470px;
+     margin-bottom: 20px;
  }
 
  .form-group {
@@ -109,11 +109,8 @@
      border-radius: 5px;
  }
 
- /* .error {
-     background-color: #FBE9E7;
-     border: 1px solid #F4511E;
-     padding: 10px;
-     margin-bottom: 20px;
-     text-align: center;
-     color: #F4511E;
- } */
+ @media screen and (min-width: 768px) {
+     .content {
+         width: 48%;
+     }
+ }
