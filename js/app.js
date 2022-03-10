@@ -9,7 +9,7 @@ function loadNames(e) {
         amount = document.querySelector('#quantity').value;
 
     // Build the URL
-    let url = 'http://hp-api.herokuapp.com/api/characters';
+    let url = '//hp-api.herokuapp.com/api/characters';
 
     // Create XMLHTTPRequest Object
     const xhr = new XMLHttpRequest();
