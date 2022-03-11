@@ -62,10 +62,10 @@ function loadNames(e) {
 
 
             let output = '';
-            genderN.forEach(function (employee) {
+            genderN.forEach(function (el) {
                 output += `
                     <ul>
-                         <li>${employee.name}</li>
+                         <li>${el.name}</li>
                     </ul>
                     `;
             });
