@@ -8,61 +8,58 @@ function loadNames(e) {
         gender = document.querySelector('#genre').value,
         amount = document.querySelector('#quantity').value;
 
-    // Build the URL
     let url = '//hp-api.herokuapp.com/api/characters';
 
-    // Create XMLHTTPRequest Object
-    const xhr = new XMLHttpRequest();
+    fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (names) {
 
-    // Open the connection
-    xhr.open('GET', url, true);
+            console.log(names);
 
-    xhr.onload = function () {
-        if (this.status === 200) {
-
-            // Get the response as an object
-            const names = JSON.parse(this.responseText);
-
-            let genderNames = [];
-            let genderN = [];
+            let namesHP = [];
+            let namesNew = [];
 
             // Filter by gender and house, then push to new array
             if (house !== '' && gender == '') {
                 names.forEach(function (el) {
+                    console.log(el.house);
                     if (el.house == house) {
-                        genderNames.push(el);
+                        namesHP.push(el);
                     }
                 });
 
             } else if (gender !== '' && house == '') {
                 names.forEach(function (el) {
                     if (el.gender == gender) {
-                        genderNames.push(el);
+                        namesHP.push(el);
                     }
                 });
 
             } else if (house !== '' && gender !== '') {
                 names.forEach(function (el) {
                     if (el.gender == gender && el.house == house) {
-                        genderNames.push(el);
+                        namesHP.push(el);
                     }
                 });
 
             } else {
                 names.forEach(function (el) {
-                    genderNames.push(el);
+                    namesHP.push(el);
                 });
             }
 
+
+
             // Loop through array amount times
             for (let i = 1; i <= amount; i++) {
-                genderN.push(genderNames[i]);
+                namesNew.push(namesHP[i]);
             }
-            console.log(genderN);
-
+            console.log(namesNew);
 
             let output = '';
-            genderN.forEach(function (el) {
+            namesNew.forEach(function (el) {
                 output += `
                     <ul>
                          <li>${el.name}</li>
@@ -73,10 +70,5 @@ function loadNames(e) {
             // Print the output
             document.querySelector('#result').innerHTML = output;
 
-        }
-    }
-
-    // Send the request
-    xhr.send();
-
+        })
 }
