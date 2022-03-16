@@ -11,11 +11,8 @@ function loadNames(e) {
     let url = '//hp-api.herokuapp.com/api/characters';
 
     fetch(url)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (names) {
-
+        .then(response => response.json())
+        .then(names => {
             console.log(names);
 
             let namesHP = [];
@@ -23,7 +20,7 @@ function loadNames(e) {
 
             // Filter by gender and house, then push to new array
             if (house !== '' && gender == '') {
-                names.forEach(function (el) {
+                names.forEach(el => {
                     console.log(el.house);
                     if (el.house == house) {
                         namesHP.push(el);
@@ -31,21 +28,21 @@ function loadNames(e) {
                 });
 
             } else if (gender !== '' && house == '') {
-                names.forEach(function (el) {
+                names.forEach(el => {
                     if (el.gender == gender) {
                         namesHP.push(el);
                     }
                 });
 
             } else if (house !== '' && gender !== '') {
-                names.forEach(function (el) {
+                names.forEach(el => {
                     if (el.gender == gender && el.house == house) {
                         namesHP.push(el);
                     }
                 });
 
             } else {
-                names.forEach(function (el) {
+                names.forEach(el => {
                     namesHP.push(el);
                 });
             }
@@ -56,16 +53,12 @@ function loadNames(e) {
             for (let i = 1; i <= amount; i++) {
                 namesNew.push(namesHP[i]);
             }
-            console.log(namesNew);
 
-            let output = '';
-            namesNew.forEach(function (el) {
-                output += `
-                    <ul>
-                         <li>${el.name}</li>
-                    </ul>
-                    `;
+            let output = '<ul>';
+            namesNew.forEach(el => {
+                output += `<li>${el.name}</li>`;
             });
+            output += '</ul>';
 
             // Print the output
             document.querySelector('#result').innerHTML = output;
