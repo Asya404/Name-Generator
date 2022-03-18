@@ -10,43 +10,40 @@ function loadNames(e) {
 
     let url = '//hp-api.herokuapp.com/api/characters';
 
-    fetch(url)
-        .then(response => response.json())
-        .then(names => {
-            console.log(names);
+    getNames(url)
+        .then(data => {
+            data = data.data;
+            console.log(data);
 
             let namesHP = [];
             let namesNew = [];
 
+
             // Filter by gender and house, then push to new array
             if (house !== '' && gender == '') {
-                names.forEach(el => {
+                data.forEach(el => {
                     console.log(el.house);
                     if (el.house == house) {
                         namesHP.push(el);
                     }
                 });
-
             } else if (gender !== '' && house == '') {
-                names.forEach(el => {
+                data.forEach(el => {
                     if (el.gender == gender) {
                         namesHP.push(el);
                     }
                 });
-
             } else if (house !== '' && gender !== '') {
-                names.forEach(el => {
+                data.forEach(el => {
                     if (el.gender == gender && el.house == house) {
                         namesHP.push(el);
                     }
                 });
-
             } else {
-                names.forEach(el => {
+                data.forEach(el => {
                     namesHP.push(el);
                 });
             }
-
 
 
             // Loop through array amount times
@@ -62,6 +59,11 @@ function loadNames(e) {
 
             // Print the output
             document.querySelector('#result').innerHTML = output;
-
         })
+}
+
+async function getNames(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    return { data }
 }
