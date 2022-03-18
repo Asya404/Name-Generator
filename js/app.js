@@ -22,7 +22,6 @@ function loadNames(e) {
             // Filter by gender and house, then push to new array
             if (house !== '' && gender == '') {
                 data.forEach(el => {
-                    console.log(el.house);
                     if (el.house == house) {
                         namesHP.push(el);
                     }
